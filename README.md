@@ -94,6 +94,32 @@ The skill measures itself against two frames: the references from the
 |---|---|
 | ![a top-down pixel farm at night](claude/examples/farm-flashlight.jpg) | ![a top-down horde shooter](claude/examples/horde-shooter.jpg) |
 
+## Examples
+
+**Hands > Mouths: colony defence in a post-collapse desert.** The player runs a tribe by assigning people to jobs and
+never selects units. Two rounds of two variants, all four drawn with the Antigravity subscription (`agy_gen.py`).
+Each image links to its full prompt.
+
+In both rounds the open question is the moment: who is the centre of the frame. The HUD carries the rules: people,
+water, scrap, spirit, the day, the storm timer, and the jobs as action slots with headcounts.
+
+**Round 1.** The prompt asks for HD pixel art with dark outlines and cel shading; the generator draws a smooth
+cel-shaded illustration instead.
+
+| The Elder commands from the well | No single hero: the veteran "TWO SIPS" behind sandbags |
+|---|---|
+| ![v1a](examples/hands-mouths-v1a.jpg) | ![v1b](examples/hands-mouths-v1b.jpg) |
+| [prompt](examples/hands-mouths-v1a.prompt.txt) | [prompt](examples/hands-mouths-v1b.prompt.txt) |
+
+**Round 2.** The style slot is rewritten as true HD pixel art: square pixels, a palette of about 32 colours, dithering,
+no outlines, with a pixel-art style reference. The raiders get red overalls and welding goggles so they read as red,
+not as black silhouettes.
+
+| The Elder commands from the well | No single hero: the veteran "TWO SIPS" behind sandbags |
+|---|---|
+| ![v2a](examples/hands-mouths-v2a.jpg) | ![v2b](examples/hands-mouths-v2b.jpg) |
+| [prompt](examples/hands-mouths-v2a.prompt.txt) | [prompt](examples/hands-mouths-v2b.prompt.txt) |
+
 ## Try saying
 
 - *"Make a concept for a game where a lighthouse keeper fights off sea monsters"*
