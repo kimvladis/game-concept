@@ -111,9 +111,27 @@ The skill measures itself against two frames: the references from the
 
 ## Examples
 
-**Hands > Mouths: colony defence in a post-collapse desert.** The player runs a tribe by assigning people to jobs and
-never selects units. Two rounds of two variants, all four drawn with the Antigravity subscription (`agy_gen.py`).
-Each image links to its full prompt.
+Each concept image comes with its full prompt.
+
+### Madame Zora: from an idea to a live game
+
+A cozy tarot reading simulator: the player types a question, draws cards, and an oracle reads the spread. Two variants
+drawn with Codex's built-in image_gen. The open question is whether the oracle herself is on screen.
+
+| The reading is written on a parchment panel | Madame Zora herself: a hero portrait and a speech bubble |
+|---|---|
+| ![v1a](examples/madame-zora-v1a.jpg) | ![v1b](examples/madame-zora-v1b.jpg) |
+| [prompt](examples/madame-zora-v1a.prompt.txt) | [prompt](examples/madame-zora-v1b.prompt.txt) |
+
+The second variant became the reference for ref2game, and the slice grew into a full game: Madame Zora reads the spread
+for your own question and speaks the answer. Play it at **[zora.vladislav.kim](https://zora.vladislav.kim)**.
+
+<img src="examples/madame-zora-game.jpg" alt="Madame Zora, the game built by ref2game from the concept" width="640">
+
+### Hands > Mouths: colony defence in a post-collapse desert
+
+The player runs a tribe by assigning people to jobs and never selects units. Two rounds of two variants, all four drawn
+with the Antigravity subscription (`agy_gen.py`).
 
 In both rounds the open question is the moment: who is the centre of the frame. The HUD carries the rules: people,
 water, scrap, spirit, the day, the storm timer, and the jobs as action slots with headcounts.
