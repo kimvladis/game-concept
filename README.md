@@ -128,6 +128,20 @@ for your own question and speaks the answer. Play it at **[zora.vladislav.kim](h
 
 <img src="examples/madame-zora-game.jpg" alt="Madame Zora, the game built by ref2game from the concept" width="640">
 
+### Mochi: a tamagotchi in one prompt
+
+`/game-concept тамагочи`, one round of questions (strict side view, HD pixel art, the feeding moment, Codex) and two
+variants drawn with `codex_gen.py` in 1.5–3 min each. The open question is the scale of the world: one kitchen with the
+pet at about 1/4 of the frame height, or the whole egg-shaped house in cross-section, where every verb gets its own room:
+the kitchen for FEED, the bedroom for SLEEP, the bathroom for CLEAN, the attic for PLAY. Every label came out right
+letter by letter, so the house went to delivery with no edits, together with
+[the brief for ref2game](examples/tamagotchi-brief.md) (in Russian).
+
+| One kitchen: Mochi is the star | The whole house: a room for every verb (picked) |
+|---|---|
+| ![v1a](examples/tamagotchi-v1a.jpg) | ![v1b](examples/tamagotchi-v1b.jpg) |
+| [prompt](examples/tamagotchi-v1a.prompt.txt) | [prompt](examples/tamagotchi-v1b.prompt.txt) |
+
 ### Hands > Mouths: colony defence in a post-collapse desert
 
 The player runs a tribe by assigning people to jobs and never selects units. Two rounds of two variants, all four drawn
