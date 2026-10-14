@@ -42,7 +42,7 @@ in it is a bad concept.
 
 | | `claude/` for Claude Code | `codex/` for Codex |
 |---|---|---|
-| Image generation | the Antigravity subscription (`agy`) or the paid Gemini API; with neither, you get the prompt | the session's built-in imagegen by default; `agy` and the Gemini API when they are set up |
+| Image generation | Codex's built-in image_gen through the `codex` CLI, the Antigravity subscription (`agy`) or the paid Gemini API; with none, you get the prompt | the session's built-in imagegen by default; `agy` and the Gemini API when they are set up |
 | Questions | multiple choice with a recommended answer | the Codex input tool, or briefly in chat |
 | Two variants | two background runs; you pick when they land | generated side by side and shown before the turn ends |
 | Letter check | the agent reads 6–8× crops | a subagent reads the crops blind, without the prompt, when delegation is available |
@@ -75,14 +75,14 @@ Agent    concept/final.png and BRIEF.md are ready. Next: /ref2game with final.pn
 
 | Generator | What you need | Speed and cost | Output |
 |---|---|---|---|
-| Codex built-in imagegen (Codex edition only) | Codex | counts against your Codex limits | the size the tool picks; the Codex edition's default |
+| Codex built-in imagegen (in Claude Code: `scripts/codex_gen.py`) | Codex; in Claude Code, `codex` on PATH and logged in | 2–3 min per image; counts against your Codex limits, no API key | the size the tool picks, ~1672×941 for 16:9; the Codex edition's default |
 | Antigravity subscription (`scripts/agy_gen.py`) | `agy` on PATH, signed in | 40–90 s per image; your Google plan's quota, no API key | ~1376×768 |
 | Paid Gemini API (`scripts/gemini_image.py`) | `GEMINI_API_KEY` | 15–40 s per image; ~$0.07 per 2K image, ~$0.3–0.5 for a whole concept | 2752×1536, Nano Banana 2.1 |
 | Manual | nothing | your time | the agent writes the prompt, you paste it into the Gemini app and drop the image into `concept/` |
 
-Both scripts take the same flags, and the paid one prints the cost of every image. When more than one generator works,
-the agent adds the choice to its question round; in Codex, imagegen comes first. The scripts are shared with ref2game,
-so the generator you pick carries over.
+All three scripts take the same flags, and the paid one prints the cost of every image. When more than one generator
+works, the agent adds the choice to its question round; in Codex, imagegen comes first. ref2game draws with the same
+generators, so the one you pick carries over.
 
 ## What makes it different
 
@@ -164,8 +164,8 @@ not as black silhouettes.
 ## Requirements
 
 Claude Code or Codex, Python 3.9+ with Pillow and NumPy, macOS or Linux. Codex draws with its built-in imagegen. In
-Claude Code, one of these: the Antigravity CLI (`agy`) signed in to a Google account, or a `GEMINI_API_KEY`. With no
-generator at all, the agent hands you the prompt.
+Claude Code, one of these: the Codex CLI (`codex`) logged in, the Antigravity CLI (`agy`) signed in to a Google account,
+or a `GEMINI_API_KEY`. With no generator at all, the agent hands you the prompt.
 
 The skill's instructions are written in Russian. The image prompts it writes are in English.
 

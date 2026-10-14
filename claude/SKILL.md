@@ -44,7 +44,7 @@ FRAME: dark foreground silhouettes in two corners; open floor around the hero an
 Not a poster, no title logo, no watermark, no perspective or vanishing point, no depth of field, no motion blur.
 ```
 
-**Текст пиши.** Генератор (Nano Banana) чисто рисует короткие надписи и числа, а подписи HUD и числа делают из HUD
+**Текст пиши.** Генераторы (Nano Banana, image_gen из Codex) чисто рисуют короткие надписи и числа, а подписи HUD и числа делают из HUD
 правила игры: «Energy», «84/100», «LV 7», «03:12». Надписи — 1–4 слова, на языке игры.
 
 **Собираемо для ref2game:** 2D, одна проекция; 3–5 типов актёров (каждому нужен риг); предметы стоят отдельно;
@@ -55,9 +55,10 @@ Not a poster, no title logo, no watermark, no perspective or vanishing point, no
 ```bash
 python3 <skill>/scripts/agy_gen.py      --prompt-file concept/v1a.prompt.txt --out concept/v1a.png --size 1920x1080 [REF ...]
 python3 <skill>/scripts/gemini_image.py --prompt-file concept/v1a.prompt.txt --out concept/v1a.png --size 1920x1080 [REF ...]
+python3 <skill>/scripts/codex_gen.py    --prompt-file concept/v1a.prompt.txt --out concept/v1a.png --size 1920x1080 [REF ...]
 ```
 
-У обоих скриптов одни флаги:
+У всех трёх скриптов одни флаги:
 - **`agy_gen.py`** работает на подписке Antigravity (`agy`): ключ не нужен, расходует квоту, 40–90 с на картинку,
   выдаёт ~1376×768.
 - **`gemini_image.py`** — платный Gemini API, Nano Banana 2.1. Нужен `GEMINI_API_KEY`. 15–40 с на картинку,
@@ -65,8 +66,11 @@ python3 <skill>/scripts/gemini_image.py --prompt-file concept/v1a.prompt.txt --o
   $0,3–0,5. Цена картинки печатается в последней строке вывода. Если ключ прописан в `~/.zshrc` позже старта
   оболочки, подгрузи его в той же команде: `eval "$(grep '^export GEMINI_API_KEY=' ~/.zshrc)"; python3 …`.
   Ключ не печатай.
+- **`codex_gen.py`** — встроенный image_gen из Codex CLI (`codex` в PATH, вход через `codex login`): ключ не нужен,
+  расходует лимиты Codex, 2–3 мин на картинку. Размер выбирает сам инструмент, скрипт просит только ориентацию:
+  16:9 выходит ~1672×941. `--model` задаёт модель агента Codex, а не картинки.
 
-Если работают оба, добавь выбор генератора в вопрос из шага 1. Картинку не увеличивай: ref2game меряет в пикселях
+Если работает больше одного, добавь выбор генератора в вопрос из шага 1. Картинку не увеличивай: ref2game меряет в пикселях
 референса.
 - **2 варианта сразу**, каждый — отдельный запуск в фоне. Они различаются по одному открытому вопросу (стиль,
   момент, камера), а не случайно.
@@ -80,14 +84,15 @@ python3 <skill>/scripts/gemini_image.py --prompt-file concept/v1a.prompt.txt --o
   `python3 <skill>/scripts/patch.py --from v1a.png --into v1a-e1.png --box x0,y0,x1,y1 --out v1a-e1p.png`.
   Скрипт откажет, если вокруг рамки кадр поменялся. Ни в одной версии надпись не верна — оставь и запиши верный
   текст в BRIEF: HUD ref2game строит кодом.
-- Нет ни `agy`, ни ключа — отдай промпт пользователю: вставит в приложение Gemini и положит картинку в `concept/`.
+- Нет ни `codex`, ни `agy`, ни ключа — отдай промпт пользователю: вставит в приложение Gemini и положит картинку в `concept/`.
 
 ## 4. Сдача
 
 В папку `concept/` нового проекта (не в чужой репозиторий):
 - `final.png`, `final.prompt.txt`;
 - `BRIEF.md`: жанр, кто игрок, главный глагол и отдача, угрозы, что значит каждый элемент HUD, стиль, камера,
-  генератор (Antigravity → в ref2game «подписка Antigravity»; `gemini_image.py` → «платный Gemini API, Nano Banana 2.1»).
+  генератор (Antigravity → в ref2game «подписка Antigravity»; `gemini_image.py` → «платный Gemini API, Nano Banana 2.1»;
+  `codex_gen.py` → «Codex built-in image_gen»).
 
 Дальше `/ref2game` с `final.png`: BRIEF отвечает на его вопросы шага 0.
 
